@@ -35,7 +35,7 @@ fct_get_choices_user <- function(my_food_week, my_week)
       for (i in 1:NROW(my_food_week)) {
         if ((my_food_week$date[i] == as.character(my_week$raw_date[row_nr_to_update])) &
             (my_food_week$lunch_dinner[i] == lunch_or_dinner)) {
-          my_food_week$date = "NA"
+          my_food_week$date[i] = "NA"
           my_food_week$lunch_dinner[i] = NA
         }
       }
