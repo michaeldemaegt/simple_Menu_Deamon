@@ -9,13 +9,14 @@ get_recipes_list <-function()
       detectDates = TRUE
     ) %>%
     janitor::clean_names() %>%
-    dplyr::mutate(index_recipe_name = stringr::str_to_lower(recipe_name))
+    dplyr::mutate(index_recipe_name = stringr::str_to_lower(recipe_name)) %>%
+    mutate(source = paste0(source," p.",page))
 
 
 
   recipes_list <-
     raw_data %>%
-    dplyr::select(recipe_name) %>%
+    dplyr::select(source,recipe_name) %>%
     unique() %>%
     dplyr::arrange(recipe_name)
 

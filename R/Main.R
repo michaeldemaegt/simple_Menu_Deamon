@@ -6,7 +6,9 @@ source("R/Load Functions.R")
 recipe_list <- fct_get_ingredient_list()
 
 my_food_week <-
-  fct_create_menu_week(get_recipes_list())
+  fct_create_menu_week(get_recipes_list()) %>%
+  mutate(recipe_name = paste0(recipe_name," [",source,"]")) %>%
+  select(-source)
 
 
 cat("\f")
@@ -25,6 +27,8 @@ my_food_week <-
 shopping_list <-
   my_food_week %>%
   filter(date!="NA") %>%
+
+  mutate(recipe_name = str_trim(str_replace(recipe_name,"\\[.*",""),side="both")) %>%
   left_join(recipe_list) %>%
   group_by(ingredient,prefered_shop,unit) %>%
   summarise(amount = sum(amount,na.rm=TRUE),

@@ -24,6 +24,8 @@ fct_generate_screen <- function(my_food_week,my_week) {
 
   for(i in 1:max_rows) {
 
+    # Check what recipe has been chose for lunch
+    # if any
     lunch <-
       my_food_week %>%
       filter(lunch_dinner=="lunch") %>%
@@ -31,10 +33,12 @@ fct_generate_screen <- function(my_food_week,my_week) {
       select(recipe_name) %>%
       pull(recipe_name)
 
-    if(identical(lunch, character(0))) {
+        if(identical(lunch, character(0))) {
       lunch = ""
     }
 
+    # Check what recipe has been chose for dinner
+    # if any
     dinner <-
       my_food_week %>%
       filter(lunch_dinner=="dinner") %>%
@@ -45,7 +49,6 @@ fct_generate_screen <- function(my_food_week,my_week) {
     if(identical(dinner, character(0))) {
       dinner = ""
     }
-
 
 
     if(i==10) {max_length_menu_name = max_length_menu_name-1}
