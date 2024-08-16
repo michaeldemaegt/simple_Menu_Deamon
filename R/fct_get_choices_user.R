@@ -5,7 +5,7 @@ fct_get_choices_user <- function(my_food_week, my_week)
   while (exit_loop == FALSE) {
     fct_generate_screen(my_food_week, my_week)
 
-    day_to_update <- str_to_upper(readline("Day to update: "))
+    day_to_update <- str_to_upper(readline("Day to update (q=quit): "))
     lunch_or_dinner <- str_sub(str_to_lower(readline("Lunch or Dinner: ")), 1, 1)
     chosen_menu <- as.integer(readline("Chosen Menu: "))
 
