@@ -54,6 +54,7 @@ write.xlsx(my_food_week, file = "What do we eat.xlsx", overwrite = TRUE)
 
 
 ### Create the email telling what we are going to eat
+print("Mailing Menu List")
 to <- c("mdemaegt@yahoo.com","mdemaegt@icloud.com")
 msg <- ""
 
@@ -71,6 +72,7 @@ x <- fct_send_email(to, subject = subject, html_body)
 
 
 ### Create the email telling what to shop for
+print("Mailing Shopping List")
 to <- c("mdemaegt@yahoo.com","mdemaegt@icloud.com")
 msg <- ""
 
