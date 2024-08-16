@@ -30,7 +30,7 @@ shopping_list <-
 
   mutate(recipe_name = str_trim(str_replace(recipe_name, "\\[.*", ""), side =
                                   "both")) %>%
-  left_join(recipe_list) %>%
+  left_join(recipe_list,by = join_by(recipe_name)) %>%
   group_by(location, ingredient, prefered_shop, unit) %>%
   summarise(amount = sum(amount, na.rm = TRUE), servings = n()) %>%
   ungroup() %>%
