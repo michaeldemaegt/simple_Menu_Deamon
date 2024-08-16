@@ -31,10 +31,10 @@ shopping_list <-
   mutate(recipe_name = str_trim(str_replace(recipe_name, "\\[.*", ""), side =
                                   "both")) %>%
   left_join(recipe_list) %>%
-  group_by(ingredient, prefered_shop, unit) %>%
+  group_by(location, ingredient, prefered_shop, unit) %>%
   summarise(amount = sum(amount, na.rm = TRUE), servings = n()) %>%
   ungroup() %>%
-  arrange(prefered_shop) %>%
+  arrange(location,prefered_shop,ingredient) %>%
   select(prefered_shop, ingredient, amount, unit, servings)
 
 write.xlsx(shopping_list, file = "Shopping List.xlsx", overwrite = TRUE)
