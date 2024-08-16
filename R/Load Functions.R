@@ -1,4 +1,6 @@
-source("R/fct_get_recipes.R")
+#' Central place to load all the functions used
+#'
+source("R/fct_get_recipes_list.R")
 source("R/fct_create_week.R")
 source("R/fct_generate_screen.R")
 source("R/fct_create_menu_week.R")
