@@ -11,5 +11,9 @@ fct_get_ingredient_list <-function()
     janitor::clean_names() %>%
     dplyr::mutate(index_recipe_name = stringr::str_to_lower(recipe_name))
 
+
+
+  raw_data$location <- factor(raw_data$location, levels = c("Wijn","Vlees","Droge Voeding","Groenten & Fruit","Kaas"))
+
   return(raw_data)
 }
