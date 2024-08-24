@@ -34,6 +34,6 @@ get_recipes_list <-function()
     unique() %>%
     dplyr::arrange(recipe_name)
 
-  # Return the finnished job
+  # Return the finished job
   return(recipes_list)
 }

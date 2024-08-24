@@ -3,17 +3,32 @@ source("R/Global Variables.R")
 source("R/Load Functions.R")
 
 
-recipe_list <- fct_get_ingredient_list()
+#' Get the recipe list from the excel file located in
+#' the data directory.
+recipe_list <-
+  fct_get_ingredient_list()
 
+#' Transform the raw data list into the required structre
+#' and modify the recipe name to include also where this recipe can be found
+#' making it easier to pinpiunt the recipe afterwards
 my_food_week <-
   fct_create_menu_week(get_recipes_list()) %>%
   mutate(recipe_name = paste0(recipe_name, " [", source, "]")) %>%
   select(-source)
 
+#' The interface is via the console,
+#' so we clean the console and ask the user of the amount of days he/she would
+#' like to plan.
+correct_input <- FALSE
 
-cat("\f")
-nr_of_day_to_fcst <-
-  as.integer(readline("For how many days do you want to define the menu (including today)? :"))
+while (!correct_input) {
+  cat("\f")
+  nr_of_day_to_fcst <- readline("For how many days do you want to define the menu (including today)? (q=quit):")
+
+  correct_input <- is.integer(as.integer(nr_of_day_to_fcst))|(str_to_lower(nr_of_day_to_fcst)=="q")
+  nr_of_day_to_fcst <- as.integer(nr_of_day_to_fcst)
+
+}
 
 my_week <-
   fct_create_week(nr_of_day_to_fcst)
@@ -55,7 +70,6 @@ write.xlsx(my_food_week, file = "What do we eat.xlsx", overwrite = TRUE)
 
 ### Create the email telling what we are going to eat
 print("Mailing Menu List")
-to <- c("mdemaegt@yahoo.com","mdemaegt@icloud.com")
 msg <- ""
 
 # Create subject line
