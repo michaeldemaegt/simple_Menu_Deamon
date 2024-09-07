@@ -6,7 +6,7 @@ fct_generate_screen <- function(my_food_week,my_week) {
   max_rows <-
     max(nrow(my_food_week),nrow(my_week))
 
-  max_length_menu_name <- max(str_length(my_food_week$recipe_name)) + 15
+  max_length_menu_name <- max(str_length(my_food_week$recipe_name)) + 2
   cte_max_length_menu_name <- max_length_menu_name
 
    # Clear Screen
